@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: blue-deployment
+   namespace: prod-ns
+spec:
+  replicas: 3
+  selector:
+   matchLabels:
+    name: blue-green
+  template:
+   metadata:
+    labels:
+      name: blue-green
+   spec:
+    volumes:
+      - name: bluesecert
+        secret:
+         secretName: bluesecert
+    containers:
+     - name: c1
+       image: nginx
+       ports:
+        - containerPort: 80
+       volumeMounts:
+        - name: bluesecert
+          mountPath: "/usr/share/nginx/html/index.html"
+          subPath: "index.html"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+   name: bluesecert
+   namespace: prod-ns
+type: Opaque
+immutable: true
+stringData:
+ index.html: |
+   <div style="background-color:Blue;width:200px;border:1px solid black;padding:15px;">
+   <h1>Blue Environment</h1>
+   </div>
+   <div style="background-color:Blue;width:200px;border:1px solid black;padding:15px;">
+   <h1>Blue Environment</h1>
+   </div>
+   <div style="background-color:Blue;width:200px;border:1px solid black;padding:15px;">
+   <h1>Blue Environment</h1>
+   </div>
+
+          
