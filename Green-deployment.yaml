@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: green-deployment
+   namespace: prod-ns
+spec:
+  replicas: 1
+  selector:
+   matchLabels:
+    name: blue-green
+  template:
+   metadata:
+    labels:
+      name: blue-green
+   spec:
+    volumes:
+      - name: greensecert
+        secret:
+         secretName: greensecert
+    containers:
+     - name: c1
+       image: nginx
+       ports:
+        - containerPort: 80
+       volumeMounts:
+        - name: greensecert
+          mountPath: "/usr/share/nginx/html/index.html"
+          subPath: "index.html"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+   name: greensecert
+   namespace: prod-ns
+type: Opaque
+stringData:
+  index.html: |
+   <div style="background-color:Green;width:200px;border:1px solid black;padding:15px;">
+   <h1>Green Environment</h1>
+   </div>
+   <div style="background-color:Green;width:200px;border:1px solid black;padding:15px;">
+   <h1>Green Environment</h1>
+   </div>
+   <div style="background-color:Green;width:200px;border:1px solid black;padding:15px;">
+   <h1>Green Environment</h1>
+   </div>
