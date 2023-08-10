@@ -11,3 +11,5 @@
 ![canary-3](https://github.com/chaithanya1812/Canary-Deployment/assets/111736742/365fd56b-2988-49dc-b6e2-4c5a0ff190b8)
 ![canarlinux3](https://github.com/chaithanya1812/Canary-Deployment/assets/111736742/16191ed8-d73e-4e17-83cb-cbec4484c663)
 
+![Screenshot 2023-08-10 214126](https://github.com/chaithanya1812/Canary-Deployment/assets/111736742/bc98626a-9a68-49f2-8089-8ebb6e8d748e)
+![gr](https://github.com/chaithanya1812/Canary-Deployment/assets/111736742/630a28cc-914a-4b56-b2cc-381c0de754fd)
